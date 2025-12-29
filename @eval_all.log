@@ -1,0 +1,69 @@
+==== Evaluation Summary (femur / tibia / overall pair) ====
+
+[euler]
+  femur:
+    geodesic_deg mean=1.739, std=0.698
+    proj_err (px) mean=1802354.750, std=705723.438
+  tibia:
+    geodesic_deg mean=2.719, std=1.404
+    proj_err (px) mean=2506722.500, std=1245300.875
+  overall pair:
+    geodesic_deg mean=3.400, std=1.137
+    proj_err (px) mean=2300124.750, std=699430.250
+
+[quat]
+  femur:
+    geodesic_deg mean=2.028, std=0.799
+    proj_err (px) mean=1764121.875, std=712848.250
+  tibia:
+    geodesic_deg mean=1.576, std=0.822
+    proj_err (px) mean=1527267.500, std=896884.875
+  overall pair:
+    geodesic_deg mean=2.660, std=0.910
+    proj_err (px) mean=1711738.875, std=666576.938
+
+[6d]
+  femur:
+    geodesic_deg mean=1.017, std=0.545
+    proj_err (px) mean=936845.625, std=481729.031
+  tibia:
+    geodesic_deg mean=1.407, std=0.493
+    proj_err (px) mean=1433640.000, std=506106.188
+  overall pair:
+    geodesic_deg mean=1.792, std=0.582
+    proj_err (px) mean=1249713.625, std=383244.406
+
+[axis_angle]
+  femur:
+    geodesic_deg mean=1.199, std=0.416
+    proj_err (px) mean=1159145.625, std=403790.094
+  tibia:
+    geodesic_deg mean=1.578, std=0.651
+    proj_err (px) mean=1443380.750, std=631183.312
+  overall pair:
+    geodesic_deg mean=2.047, std=0.574
+    proj_err (px) mean=1353323.000, std=400389.531
+
+==== Overall ranking (by geodesic_deg mean, lower is better) ====
+
+Femur:
+  6d        : 1.017 deg
+  axis_angle: 1.199 deg
+  euler     : 1.739 deg
+  quat      : 2.028 deg
+
+Tibia:
+  6d        : 1.407 deg
+  quat      : 1.576 deg
+  axis_angle: 1.578 deg
+  euler     : 2.719 deg
+
+Overall pair:
+  6d        : 1.792 deg
+  axis_angle: 2.047 deg
+  quat      : 2.660 deg
+  euler     : 3.400 deg
+
+Overall计算方法:
+    geodesic: 两个 geodesic 误差看作一个 2D 向量，然后取欧氏范数. 等价于在误差向量空间 里测“这对骨头一共偏了多远”
+    proj_err: RMS root mean square  合并.RMS 会对“大误差”更敏感：如果某一块骨头投影误差特别大，会把整体拉高，这符合“只要有一块骨头飘得很远，整张图就不准”的直觉。
